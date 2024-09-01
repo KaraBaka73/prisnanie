@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ru"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Открытка</title> 
+    <link rel="stylesheet"> 
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            background-image: url('Background.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: grid;
+            grid-template-areas: 
+                "top-left top-right"
+                "button button"
+                "bottom-left bottom-right"
+                ". bottom-text";
+            gap: 20px;
+            text-align: center;
+            position: relative; 
+            display: none; 
+            opacity: 0; 
+            transform: scale(0.8); 
+            transition: opacity 1s ease, transform 1s ease; 
+        }
+
+        .container.show {
+            display: grid;
+            opacity: 1; 
+            transform: scale(1); 
+        }
+
+        .box {
+            width: 150px;
+            height: 200px;
+            border: 2px solid white;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .box-top-left {
+            grid-area: top-left;
+        }
+
+        .box-bottom-right {
+            grid-area: bottom-right;
+        }
+
+        .text {
+            color: white;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .text-top-right {
+            grid-area: top-right;
+        }
+
+        .text-bottom-left {
+            grid-area: bottom-left;
+        }
+
+        .text-bottom {
+            grid-area: bottom-text;
+            position: absolute;
+            bottom: 50px; 
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            padding: 10px; 
+            font-size: 12px; 
+            line-height: 1.4; 
+        }
+
+        .button {
+            grid-area: button;
+            padding: 10px 20px;
+            font-size: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: white;
+            color: black;
+            margin: auto;
+        }
+
+        .open-card-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: white;
+            color: black;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style> 
+</head> 
+<body> 
+    <audio id="audio">
+        <source src="MyGirl.mp3" type="audio/mpeg">
+       
+    </audio>
+
+    <button class="open-card-button" onclick="openCard()">Открыть открытку</button>
+
+    <div class="container" id="card"> 
+        <div class="box box-top-left"> 
+            <img src="MyGirl.jpg" alt="Image 1"> 
+        </div> 
+        <div class="text text-top-right">
+            Я долго размышлял, как признаться тебе в своих чувствах, и понял, что лучше сделать это прямо сейчас. С каждым днем мои эмоции к тебе только усиливались, и мне становилось все труднее держать их в себе. 
+        </div> 
+        
+        <div class="text text-bottom-left">
+            Ты для меня гораздо больше, чем просто друг — рядом с тобой я чувствую настоящее счастье. Каждая твоя улыбка, каждый взгляд делают мой день светлее. Я хочу быть ближе к тебе, узнавать тебя лучше и делить с тобой радости и трудности жизни.
+        </div> 
+        <div class="box box-bottom-right"> 
+            <img src="My-Girl.png" alt="Image 2"> 
+        </div> 
+        <div class="text text-bottom">
+            Надеюсь, ты поймешь меня и дашь нашим отношениям шанс на большее. Если же твой ответ будет отрицательным, я пойму и не обижусь.
+        </div> 
+    </div> 
+
+    <script>
+        function openCard() {
+            var card = document.getElementById("card");
+            card.style.display = "grid"; 
+            setTimeout(function() {
+                card.classList.add("show"); 
+            }, 10); 
+            document.querySelector(".open-card-button").style.display = "none"; 
+            document.getElementById("audio").play(); 
+        }
+    </script>
+</body>
+</html>
